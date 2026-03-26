@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dbfb012-6221-471a-9c41-9ae1724bf0f4" name="Changes" comment="2nd commit">
-      <change beforePath="$PROJECT_DIR$/.idea/SpyceWar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SpyceWar.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="4dbfb012-6221-471a-9c41-9ae1724bf0f4" name="Changes" comment="Ship class: Implemented a new update_accel_scale() function that limits the acceleration value to comply with VELOCITY_CAP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source_files/ship.py" beforeDir="false" afterPath="$PROJECT_DIR$/source_files/ship.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source_files/vector2.py" beforeDir="false" afterPath="$PROJECT_DIR$/source_files/vector2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +68,19 @@
       <option name="presentableId" value="Default" />
       <updated>1772736014035</updated>
     </task>
+    <task id="LOCAL-00001" summary="Ship class: Implemented a new update_accel_scale() function that limits the acceleration value to comply with VELOCITY_CAP">
+      <option name="closed" value="true" />
+      <created>1774536696650</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1774536696650</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ship class: Implemented a new update_accel_scale() function that limits the acceleration value to comply with VELOCITY_CAP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ship class: Implemented a new update_accel_scale() function that limits the acceleration value to comply with VELOCITY_CAP" />
   </component>
 </project>
