@@ -21,7 +21,7 @@ class Vector2:
         self.x *= num
         self.y *= num
 
-    def __add__(self,other: Vector2) -> Vector2:
+    def __add__(self,other):
         """ basic implementation of a sum of two vectors """
         if not isinstance(other, Vector2):
             return NotImplemented

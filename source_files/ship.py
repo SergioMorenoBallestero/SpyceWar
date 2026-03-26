@@ -15,30 +15,40 @@ class Ship:
     def move(self, keyboard: list[int]):
         """ Updates the position of the ship based on keyboard input.
         **This function must do a check to ensure the ship doesn't go OOB**"""
-        self.update_acceleration(keyboard)
-        self.update_velocity()
+        self.__update_acceleration(keyboard)
+        self.__update_velocity()
         self.position += self.velocity
 
-    def update_velocity(self):
+    def __update_velocity(self):
         """ Updates the velocity by adding the value of acceleration
          **This function must do a check to ensure the cap acceleration isn't reached**"""
         # this feels weird... I should check it later prolly
         if (self.velocity + self.acceleration).length() <= constants.VELOCITY_CAP:
             self.velocity += self.acceleration
 
-    def update_acceleration(self, keyboard: list[int]):
+    def __update_acceleration(self, keyboard: list[int]):
         """ Updates the acceleration value by comparing the input to the velocity """
-        # what if the input is null?
-        if keyboard == [0,0]:
-            if self.velocity.x != 0 or self.velocity.y != 0:
-                # assign an acceleration opposite to velocity to slow the ship down
-                # the vector will be normalized either way, we can assign the values directly
-                self.acceleration.x, self.acceleration.y = self.velocity.x, self.velocity.y
-                self.acceleration.scale(-1)
+        # if there is some null input value
+        if keyboard[0] == 0 or keyboard[0] == 0:
+            if keyboard[0] == 0 and self.velocity.x != 0: # case 1: x input is 0, and x velocity is not 0
+                self.acceleration.x = self.velocity.x
+            if keyboard[1] == 0 and self.velocity.y != 0: # case 2: y input is 0, and y velocity is not 0
+                self.acceleration.y = self.velocity.y
+            self.acceleration.scale(-1)
         else:
-            # assign the input values to acceleration
+            # just assign the input values to acceleration
             self.acceleration.x, self.acceleration.y = keyboard[0], keyboard[1]
         # normalize the acceleration vector
         self.acceleration.normalize()
-        # scale the acceleration vector
+        # adjust the acceleration scale
+        self.__update_accel_scale()
+
+    def __update_accel_scale(self):
+        """ Scales the acceleration depending on the velocity cap """
+        # scale the acceleration vector (default case, the cap is not reached)
         self.acceleration.scale(constants.ACCELERATION)
+        # check whether the new velocity will be greater than the current one
+        if (self.velocity + self.acceleration).length() > constants.VELOCITY_CAP:
+            # the scale of the acceleration should be the difference between the cap and the current velocity
+            difference = constants.VELOCITY_CAP - self.velocity.length()
+            self.acceleration.scale(difference / constants.ACCELERATION)
