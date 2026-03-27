@@ -1,3 +1,4 @@
 in ship.py:
     *implement a check in move() so that the ship doesn't go OOB
-    *implement a check in update_velocity() so that the velocity respects a certain upper bound
+in general:
+    *write a doc file explaining your classes

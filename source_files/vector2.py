@@ -26,3 +26,7 @@ class Vector2:
         if not isinstance(other, Vector2):
             return NotImplemented
         return Vector2(self.x + other.x, self.y + other.y)
+
+    def __str__(self) -> str:
+        """ shows the coordinates of the vector """
+        return "(" + str(self.x) + "," + str(self.y) + ")"
