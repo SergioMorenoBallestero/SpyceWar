@@ -5,66 +5,97 @@ class Ship:
     """ This class is intended to represent the ship the player controls in the game. For now,
     we won't worry about anything but getting the movement right. So, the attributes are:
     :position: the position vector. Vector2 type. Position should NEVER have negative values
-    :velocity: the velocity vector. Vector2 type.
-    :acceleration: the acceleration vector. doubles as direction. Vector2 type. """
+    :__velocity: the __velocity vector. Vector2 type.
+    :__acceleration: the __acceleration vector. doubles as direction. Vector2 type. """
     def __init__(self):
         self.position = Vector2()
-        self.velocity = Vector2()
-        self.acceleration = Vector2()
+        self.__velocity = Vector2()
+        self.__acceleration = Vector2()
 
 
     def move(self, keyboard: list[int]):
-        """ Updates the position of the ship based on keyboard input.
-        **This function must do a check to ensure the ship doesn't go OOB**"""
+        """ Updates the position of the ship based on keyboard input. """
+        inf_limit = constants.SCREEN_HEIGHT - constants.SPRITE_HEIGHT
+        right_limit = constants.SCREEN_WIDTH - constants.SPRITE_WIDTH
         self.__update_acceleration(keyboard)
         self.__update_velocity()
-        self.position += self.velocity
+
+        new_pos = Vector2(self.position.x + self.__velocity.x, self.position.y + self.__velocity.y)
+        # x bounds checking
+        if (new_pos.x <= 0):
+           self.position.x = 0
+        elif (new_pos.x >= right_limit):
+            self.position.x = right_limit
+        else:
+            self.position.x = new_pos.x
+        # y bounds checking
+        if (new_pos.y <= 0):
+            self.position.y = 0
+        elif (new_pos.y >= inf_limit):
+            self.position.y = inf_limit
+        else:
+            self.position.y = new_pos.y
 
 
     def __update_acceleration(self, keyboard: list[int]):
-        """ Updates the acceleration value by comparing the input to the velocity """
-        # assign the input values to acceleration
-        self.acceleration.x, self.acceleration.y = keyboard[0], keyboard[1]
-        # an acceleration contrary to the velocity should be assigned
+        """ Updates the __acceleration value by comparing the input to the __velocity """
+        # assign the input values to __acceleration
+        self.__acceleration.x, self.__acceleration.y = keyboard[0], keyboard[1]
+        # an __acceleration contrary to the __velocity should be assigned
         if (keyboard[0] == 0): # case 1: x input is 0
-            self.acceleration.x = self.velocity.x
-            self.acceleration.x *= -1
+            self.__acceleration.x = self.__velocity.x
+            self.__acceleration.x *= -1
         if (keyboard[1] == 0): # case 2: y input is 0
-            self.acceleration.y = self.velocity.y
-            self.acceleration.y *= -1
+            self.__acceleration.y = self.__velocity.y
+            self.__acceleration.y *= -1
 
-        if (self.acceleration.length() != 0): # check just to avoid dividing by 0
-            # normalize the acceleration vector
-            self.acceleration.normalize()
-        # adjust the acceleration scale
+        if (self.__acceleration.length() != 0): # check just to avoid dividing by 0
+            # normalize the __acceleration vector
+            self.__acceleration.normalize()
+        # adjust the __acceleration scale
         self.__update_accel_scale()
 
 
     def __update_accel_scale(self):
-        """ Scales the acceleration depending on the velocity cap """
-        if (self.velocity.length() < (constants.VELOCITY_CAP - 0.5)): # if velocity isn't already at max
-            # scale the acceleration vector
-            self.acceleration.scale(constants.ACCELERATION)
-            if ((self.velocity + self.acceleration).length() > constants.VELOCITY_CAP): # if new velocity overflows
-                # the scale of the acceleration should then cover just enough to reach the velocity_cap
-                difference = constants.VELOCITY_CAP - self.velocity.length()
-                self.acceleration.scale(difference / constants.ACCELERATION)
+        """ Scales the __acceleration depending on the __velocity cap """
+        if (self.__velocity.length() < (constants.VELOCITY_CAP - 0.5)): # if __velocity isn't already at max
+            # scale the __acceleration vector
+            self.__acceleration.scale(constants.ACCELERATION)
+            if ((self.__velocity + self.__acceleration).length() > constants.VELOCITY_CAP): # if new __velocity overflows
+                # the scale of the __acceleration should then cover just enough to reach the velocity_cap
+                difference = constants.VELOCITY_CAP - self.__velocity.length()
+                self.__acceleration.scale(difference / constants.ACCELERATION)
 
 
     def __update_velocity(self):
-        """ Updates the velocity by adding the value of acceleration, or forcing it to its max value """
-        # in the default case, increment and assign the acceleration values to velocity
-        self.velocity += self.acceleration
-        if (self.velocity.length() >= (constants.VELOCITY_CAP - 0.5)): # if velocity is already at max length
+        """ Updates the __velocity by adding the value of __acceleration, or forcing it to its max value """
+        # in the default case, increment and assign the __acceleration values to __velocity
+        self.__velocity += self.__acceleration
+        if (self.__velocity.length() >= (constants.VELOCITY_CAP - 0.5)): # if __velocity is already at max length
             # keep the direction
-            self.velocity.normalize()
+            self.__velocity.normalize()
             # scale it to its maximum value
-            self.velocity.scale(constants.VELOCITY_CAP)
-        elif (self.velocity.length() < 1): # if it turns out velocity is very small
+            self.__velocity.scale(constants.VELOCITY_CAP)
+        elif (self.__velocity.length() < 1): # if it turns out __velocity is very small
             # set it to 0 directly
-            self.velocity.scale(0)
+            self.__velocity.scale(0)
 
 
     def __str__(self) -> str:
-        """ shows the 3 vectors of interest: velocity, acceleration, position """
-        return "vel: " + str(self.velocity) + "\n" + "accel: " + str(self.acceleration) + "\n" + "pos: " + str(self.position)
+        """ shows the 3 vectors of interest: __velocity, __acceleration, position """
+        return "vel: " + str(self.__velocity) + "\n" + "accel: " + str(self.__acceleration) + "\n" + "pos: " + str(self.position)
+
+    # properties and setters
+    @property
+    def position(self) -> Vector2:
+        return self.__position
+
+    @position.setter
+    def position(self, position: Vector2):
+        if not isinstance(position, Vector2):
+            raise TypeError("The position vector is not a vector!")
+        elif (position.x < 0 or position.x > constants.SCREEN_WIDTH + constants.SPRITE_WIDTH or position.y < 0 or
+              position.y > constants.SCREEN_HEIGHT + constants.SPRITE_HEIGHT):
+            raise ValueError("The position went out of bounds!")
+        else:
+            self.__position = position
