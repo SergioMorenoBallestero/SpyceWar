@@ -44,10 +44,10 @@ class Ship:
         # an __acceleration contrary to the __velocity should be assigned
         if (keyboard[0] == 0): # case 1: x input is 0
             self.__acceleration.x = self.__velocity.x
-            self.__acceleration.x *= -1
+            self.__acceleration.x *= -constants.FRICTION_FACTOR
         if (keyboard[1] == 0): # case 2: y input is 0
             self.__acceleration.y = self.__velocity.y
-            self.__acceleration.y *= -1
+            self.__acceleration.y *= -constants.FRICTION_FACTOR
 
         if (self.__acceleration.length() != 0): # check just to avoid dividing by 0
             # normalize the __acceleration vector

@@ -1,4 +1,6 @@
 in ship.py:
-    *implement a check in move() so that the ship doesn't go OOB
+    *implement delta time in the move() function so that the ship moves the same way independently of fps
+in board.py:
+    *implement the delta time in the update() function so that everything moves the same way independently of fps
 in general:
     *write a doc file explaining your classes

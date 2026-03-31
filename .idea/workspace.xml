@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dbfb012-6221-471a-9c41-9ae1724bf0f4" name="Changes" comment="i forgor to commit the new files lololol">
+    <list default="true" id="4dbfb012-6221-471a-9c41-9ae1724bf0f4" name="Changes" comment="Ship class: separated responsibilities between update_acceleration() and update_velocity().">
+      <change beforePath="$PROJECT_DIR$/.idea/SpyceWar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SpyceWar.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/TO-DO.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/TO-DO.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source_files/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/source_files/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source_files/ship.py" beforeDir="false" afterPath="$PROJECT_DIR$/source_files/ship.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source_files/vector2.py" beforeDir="false" afterPath="$PROJECT_DIR$/source_files/vector2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +34,12 @@
     &quot;assignee&quot;: &quot;SergioMorenoBallestero&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/SergioMorenoBallestero/SpyceWar.git&quot;,
-    &quot;accountId&quot;: &quot;8358558d-6f45-433f-a858-03078c0133d0&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/SergioMorenoBallestero/SpyceWar",
+    "accountId": "76c96765-5a9a-47f6-a060-5411d746a07f"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -67,7 +71,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
+        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
       </set>
     </attachedChunks>
   </component>
@@ -95,30 +99,12 @@
       <option name="project" value="LOCAL" />
       <updated>1774565579912</updated>
     </task>
-    <task id="LOCAL-00003" summary="Ship class: fixed up the movement. Now:                    -Velocity is clamped if it's already at max value      -Velocity goes to 0 if it's below 1                    -Acceleration at x or y is assigned velocity at x or y, if input at x or y is null                          &#10;                                                          In general: created a board class and a main.py to try out new things in a real scenario">
-      <option name="closed" value="true" />
-      <created>1774626119043</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1774626119043</updated>
-    </task>
-    <task id="LOCAL-00004" summary="i forgor to commit the new files lololol">
-      <option name="closed" value="true" />
-      <created>1774626168662</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1774626168662</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ship class: Implemented a new update_accel_scale() function that limits the acceleration value to comply with VELOCITY_CAP" />
     <MESSAGE value="Ship class: separated responsibilities between update_acceleration() and update_velocity()." />
-    <MESSAGE value="Ship class: fixed up the movement. Now:                    -Velocity is clamped if it's already at max value      -Velocity goes to 0 if it's below 1                    -Acceleration at x or y is assigned velocity at x or y, if input at x or y is null                          &#10;                                                          In general: created a board class and a main.py to try out new things in a real scenario" />
-    <MESSAGE value="i forgor to commit the new files lololol" />
-    <option name="LAST_COMMIT_MESSAGE" value="i forgor to commit the new files lololol" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ship class: separated responsibilities between update_acceleration() and update_velocity()." />
   </component>
 </project>
