@@ -1,9 +1,11 @@
 import pyxel
+import time
 from ship import Ship
 
 class Board:
     """ This class represents the game window """
     def __init__(self):
+        self.then = 0
         self.player = Ship()
 
 
@@ -22,10 +24,12 @@ class Board:
 
 
     def update(self):
+        now = time.time()
         if pyxel.btn(pyxel.KEY_ESCAPE):
             pyxel.quit()
         self.player.move(self.parse_input())
         print(self.player)
+        self.then = time.time()
 
 
     def draw(self):

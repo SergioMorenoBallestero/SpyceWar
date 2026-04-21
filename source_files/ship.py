@@ -17,8 +17,9 @@ class Ship:
         """ Updates the position of the ship based on keyboard input. """
         inf_limit = constants.SCREEN_HEIGHT - constants.SPRITE_HEIGHT
         right_limit = constants.SCREEN_WIDTH - constants.SPRITE_WIDTH
-        self.__update_acceleration(keyboard)
+        self.__update_accel_direction(keyboard)
         self.__update_velocity()
+        self.__update_accel_scale()
 
         new_pos = Vector2(self.position.x + self.__velocity.x, self.position.y + self.__velocity.y)
         # x bounds checking
@@ -37,7 +38,7 @@ class Ship:
             self.position.y = new_pos.y
 
 
-    def __update_acceleration(self, keyboard: list[int]):
+    def __update_accel_direction(self, keyboard: list[int]):
         """ Updates the __acceleration value by comparing the input to the __velocity """
         # assign the input values to __acceleration
         self.__acceleration.x, self.__acceleration.y = keyboard[0], keyboard[1]
@@ -52,8 +53,6 @@ class Ship:
         if (self.__acceleration.length() != 0): # check just to avoid dividing by 0
             # normalize the __acceleration vector
             self.__acceleration.normalize()
-        # adjust the __acceleration scale
-        self.__update_accel_scale()
 
 
     def __update_accel_scale(self):
