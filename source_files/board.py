@@ -1,10 +1,12 @@
 import pyxel
+import time
 from ship import Ship
 
 class Board:
     """ This class represents the game window """
     def __init__(self):
         self.player = Ship()
+        self.time = time.time()
 
 
     def parse_input(self) -> list[int]:
@@ -22,10 +24,11 @@ class Board:
 
 
     def update(self):
+        delta_seconds = time.time() - self.time
         if pyxel.btn(pyxel.KEY_ESCAPE):
             pyxel.quit()
-        self.player.move(self.parse_input())
-        print(self.player)
+        self.player.move(self.parse_input(),delta_seconds)
+        self.time = time.time()
 
 
     def draw(self):
